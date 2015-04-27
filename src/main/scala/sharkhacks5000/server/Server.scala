@@ -1,8 +1,5 @@
 package sharkhacks5000.server
 
-import java.net.URI
-import java.sql.{Connection, DriverManager}
-
 import com.twitter.finagle.http.Response
 import com.twitter.finagle.{Http, Service}
 import com.twitter.util.{Await, Future}

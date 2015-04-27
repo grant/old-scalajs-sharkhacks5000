@@ -1,3 +1,4 @@
+import NativePackagerKeys._
 //enablePlugins(ScalaJSPlugin)
 
 packageArchetype.java_application
