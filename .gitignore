@@ -19,6 +19,7 @@ lib_managed/
 logs
 node_modules
 pids
-project
+project/project
+project/target
 src_managed/
 target/
