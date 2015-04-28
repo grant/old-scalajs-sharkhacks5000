@@ -12,5 +12,5 @@ scalaVersion := "2.11.6"
 //scalaJSStage in Global := FastOptStage
 
 libraryDependencies ++= Seq(
-  "com.twitter" % "finagle-http_2.11" % "6.25.0"
+  "io.dropwizard" % "dropwizard-core" % "0.8.1"
 )
