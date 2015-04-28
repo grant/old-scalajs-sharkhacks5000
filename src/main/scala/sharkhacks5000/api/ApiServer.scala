@@ -2,15 +2,12 @@ package sharkhacks5000.api
 
 import java.util
 
+import io.dropwizard.Application
 import io.dropwizard.jetty.ConnectorFactory
-import io.dropwizard.server.ServerFactory
-import io.dropwizard.{Configuration, Application}
-import io.dropwizard.setup.Environment
-
-import java.lang.reflect.Field
-
+import io.dropwizard.setup.{Bootstrap, Environment}
 import sharkhacks5000.api.health.ApiHealth
-import sharkhacks5000.api.resources.{StatusResource, IndexResource}
+import sharkhacks5000.api.resources.{IndexResource, StatusResource}
+import io.dropwizard.assets.AssetsBundle
 
 /**
  * Runner for the API server.
@@ -19,28 +16,18 @@ import sharkhacks5000.api.resources.{StatusResource, IndexResource}
 class ApiServer(port: Int) extends Application[ApiConfiguration] {
 
   private final val API_HEALTH_CHECK: String = "api_health_check"
+  private final val APPLICATION_CONTEXT_PATH: String = "api"
 
-  /**
-   * SUPER HACK
-   * Changes DW's port using reflection
-   * @param config The server's config
-   */
-  def changePortHack(config: ApiConfiguration): Unit = {
-    val serverField = config.getClass.getSuperclass.getDeclaredField("server")
-    serverField.setAccessible(true)
-    val server = serverField.get(config)
-
-    val applicationConnectorsField = server.getClass.getDeclaredField("applicationConnectors")
-    applicationConnectorsField.setAccessible(true)
-    val ac = applicationConnectorsField.get(server).asInstanceOf[util.ArrayList[ConnectorFactory]].get(0)
-
-    val portField = ac.getClass.getDeclaredField("port")
-    portField.setAccessible(true)
-    portField.set(ac, port)
+  override def initialize(bootstrap: Bootstrap[ApiConfiguration]) {
+    bootstrap.addBundle(new AssetsBundle("/assets", "/assets"))
   }
 
   override def run(config: ApiConfiguration, environment: Environment): Unit = {
     changePortHack(config)
+
+    // Change the routing so we can enable static files
+    environment.getApplicationContext.setContextPath(APPLICATION_CONTEXT_PATH)
+    environment.jersey().setUrlPattern(s"/$APPLICATION_CONTEXT_PATH/*");
 
     // Setup resources
     val indexResource: IndexResource = new IndexResource
@@ -56,6 +43,25 @@ class ApiServer(port: Int) extends Application[ApiConfiguration] {
     val apiHealth: ApiHealth = new ApiHealth
     environment.healthChecks().register(API_HEALTH_CHECK, apiHealth)
   }
+
+  /**
+   * SUPER HACK
+   * Changes DW's port using reflection
+   * @param config The server's config
+   */
+  private def changePortHack(config: ApiConfiguration): Unit = {
+    val serverField = config.getClass.getSuperclass.getDeclaredField("server")
+    serverField.setAccessible(true)
+    val server = serverField.get(config)
+
+    val applicationConnectorsField = server.getClass.getDeclaredField("applicationConnectors")
+    applicationConnectorsField.setAccessible(true)
+    val ac = applicationConnectorsField.get(server).asInstanceOf[util.ArrayList[ConnectorFactory]].get(0)
+
+    val portField = ac.getClass.getDeclaredField("port")
+    portField.setAccessible(true)
+    portField.set(ac, port)
+  }
 }
 
 /**
@@ -67,9 +73,9 @@ object Main {
 
   def main(args: Array[String]) {
     // Expect the port to be passed in as the first arg
-    val port:Int = args match {
+    val port: Int = args match {
       case Array() => DEFAULT_PORT
-      case Array(num:String) => num.toInt
+      case Array(num: String) => num.toInt
       case _ => throw new IllegalArgumentException
     }
 
