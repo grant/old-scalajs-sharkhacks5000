@@ -10,7 +10,7 @@ import io.dropwizard.setup.Environment
 import java.lang.reflect.Field
 
 import sharkhacks5000.api.health.ApiHealth
-import sharkhacks5000.api.resources.IndexResource
+import sharkhacks5000.api.resources.{StatusResource, IndexResource}
 
 /**
  * Runner for the API server.
@@ -44,10 +44,13 @@ class ApiServer(port: Int) extends Application[ApiConfiguration] {
 
     // Setup resources
     val indexResource: IndexResource = new IndexResource
+    val statusResource: StatusResource = new StatusResource
 
     // Endpoints
     // /
     environment.jersey().register(indexResource)
+    // /status
+    environment.jersey().register(statusResource)
 
     // Health Check
     val apiHealth: ApiHealth = new ApiHealth
