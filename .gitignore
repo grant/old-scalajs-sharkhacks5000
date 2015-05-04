@@ -11,15 +11,12 @@
 .lock-wscript
 .scala_dependencies
 .worksheet
-build/Release
 coverage
 dist/*
 lib-cov
 lib_managed/
 logs
 node_modules
-pids
 project/project
 project/target
-src_managed/
 target/
