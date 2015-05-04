@@ -1,11 +1,9 @@
-import com.typesafe.sbt.SbtNativePackager
-import com.typesafe.sbt.packager.archetypes.JavaAppPackaging
-import com.typesafe.sbt.packager.universal.UniversalKeys
-import play._
+//import com.typesafe.sbt.SbtNativePackager
+//import com.typesafe.sbt.packager.archetypes.JavaAppPackaging
 import sbt._
 import sbt.Keys._
 
-object Build extends Build with UniversalKeys {
+object Build extends Build {
 
   val appName = "sharkhacks5000"
 
@@ -24,7 +22,7 @@ object Build extends Build with UniversalKeys {
   lazy val server =
     project.in(file("server"))
       .settings(serverSettings:_*)
-      .enablePlugins(SbtNativePackager)
+//      .enablePlugins(SbtNativePackager)
 //      .enablePlugins(JavaAppPackaging)
   //      .enablePlugins(PlayScala)
 
@@ -36,6 +34,13 @@ object Build extends Build with UniversalKeys {
     libraryDependencies ++= Dependencies.serverDeps
   )
 
+  lazy val stage: TaskKey[Unit] = TaskKey[Unit]("stage", "Prepares the project for production.")
+  lazy val stageTask = {
+    println("Running `stage` task...")
+    val ret = sys.process.stringSeqToProcess(Seq("/bin/bash", "-c", "sh build.sh"))
+    println(ret.!!)
+  }
+
   /**
    * The setting that will be applied to all sub projects
    */
@@ -43,7 +48,8 @@ object Build extends Build with UniversalKeys {
     organization := "com.sharkhacks5000",
     version := "1.0-SNAPSHOT",
     name := "sharkhacks5000",
-    scalaVersion := "2.11.4"
+    scalaVersion := "2.11.4",
+    stage := stageTask
   )
 
   /**

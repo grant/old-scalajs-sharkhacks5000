@@ -1,1 +1,1 @@
-web: server/target/universal/stage/bin/sharkhacks5000-server -Dhttp.port=${PORT}
+web: java -jar ./server/target/scala-2.11/sharkhacks5000-server-assembly-1.0-SNAPSHOT.jar -Dhttp.port=${PORT}
