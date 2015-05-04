@@ -20,6 +20,7 @@ class ApiServer(port: Int) extends Application[ApiConfiguration] {
 
   override def initialize(bootstrap: Bootstrap[ApiConfiguration]) {
     bootstrap.addBundle(new AssetsBundle("/assets", "/assets"))
+    bootstrap.addBundle(new AssetsBundle("/generated", "/generated"))
   }
 
   override def run(config: ApiConfiguration, environment: Environment): Unit = {

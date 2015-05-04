@@ -1,11 +1,7 @@
-import com.typesafe.sbt.packager.universal.UniversalKeys
-import com.typesafe.sbt.web.Import._
-import com.typesafe.sbt.less.Import._
 import org.scalajs.sbtplugin.ScalaJSPlugin
-import org.scalajs.sbtplugin.ScalaJSPlugin.AutoImport._
 import org.scalajs.sbtplugin.ScalaJSPlugin.autoImport._
+import sbt.Keys._
 import sbt._
-import Keys._
 
 object Build extends Build {
 
@@ -74,10 +70,10 @@ object Build extends Build {
 
   lazy val serverSettings = commonSettings ++ Seq(
     name := s"$appName-server",
-    scalajsOutputDir := (classDirectory in Compile).value / "public" / "javascripts",
+//    scalajsOutputDir := (classDirectory in Compile).value / "public" / "javascripts",
+    scalajsOutputDir := (resourceDirectory in Compile).value / "generated",
     compile in Compile <<= (compile in Compile) dependsOn (fastOptJS in(client, Compile)) dependsOn copySourceMapsTask,
-        dist <<= dist dependsOn (fullOptJS in (client, Compile)),
-        stage <<= stage dependsOn (fullOptJS in (client, Compile)),
+    stage <<= stage dependsOn (fullOptJS in(client, Compile)),
     libraryDependencies ++= Dependencies.serverDeps.value
   ) ++ (
     // ask scalajs project to put its outputs in scalajsOutputDir
@@ -114,4 +110,5 @@ object Build extends Build {
       "be.doeraene" %%% "scalajs-jquery" % Versions.scalajsJQuery
     ))
   }
+
 }
