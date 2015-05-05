@@ -3,11 +3,11 @@ package sharkhacks5000.api
 import java.util
 
 import io.dropwizard.Application
+import io.dropwizard.assets.AssetsBundle
 import io.dropwizard.jetty.ConnectorFactory
 import io.dropwizard.setup.{Bootstrap, Environment}
 import sharkhacks5000.api.health.ApiHealth
 import sharkhacks5000.api.resources.{IndexResource, StatusResource}
-import io.dropwizard.assets.AssetsBundle
 
 /**
  * Runner for the API server.
@@ -19,16 +19,13 @@ class ApiServer(port: Int) extends Application[ApiConfiguration] {
   private final val APPLICATION_CONTEXT_PATH: String = "api"
 
   override def initialize(bootstrap: Bootstrap[ApiConfiguration]) {
-    bootstrap.addBundle(new AssetsBundle("/assets", "/assets"))
+    //    bootstrap.addBundle(new AssetsBundle("/assets", "/test"))
     bootstrap.addBundle(new AssetsBundle("/generated", "/generated"))
   }
 
   override def run(config: ApiConfiguration, environment: Environment): Unit = {
+    // TODO: Need to figure out how to use a config file
     changePortHack(config)
-
-    // Change the routing so we can enable static files
-    environment.getApplicationContext.setContextPath(APPLICATION_CONTEXT_PATH)
-    environment.jersey().setUrlPattern(s"/$APPLICATION_CONTEXT_PATH/*");
 
     // Setup resources
     val indexResource: IndexResource = new IndexResource

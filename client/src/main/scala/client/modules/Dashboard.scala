@@ -16,7 +16,7 @@ object Dashboard {
     val appLinks = MainRouter.appLinks(router)
     div(
       h2("Dashboard"),
-      h3("hello there nope"),
+      h3("asdfasdf"),
       h6("yup"),
       input(),
       span(className := "hi", onClick --> testClick(), "hello"),
