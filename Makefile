@@ -13,3 +13,6 @@ build:
 # Runs the package
 run:
 	java -jar ./server/target/scala-2.11/sharkhacks5000-server-assembly-1.0-SNAPSHOT.jar
+
+js:
+	python -m SimpleHTTPServer

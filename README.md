@@ -4,25 +4,43 @@ The home page for SharkHacks5000
 
 ## Development
 
+How to continuously develop. Open 3 tabs and run the following:
+
+```sh
+sbt
+project client
+~fastOptJS
+```
+
+```sh
+make local
+```
+
+```sh
+make js
+```
+
+## Building
+
 How to start:
 
 Locally:
 
 ```sh
-sbt "project server" run
+make local
 ```
 
 Heroku:
 
 ```sh
-foreman start
+make heroku
 ```
 
 How to package (Create a fat JAR):
 
 ```sh
-sbt "project server" assembly
-java -jar ./server/target/scala-2.11/sharkhacks5000-server-assembly-1.0-SNAPSHOT.jar
+make build
+make run
 ```
 
 
