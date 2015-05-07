@@ -20,7 +20,7 @@ make local
 make js
 ```
 
-## Building
+## Building / Deploying
 
 How to start:
 
