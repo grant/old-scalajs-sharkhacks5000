@@ -1,4 +1,4 @@
-package sharkhacks.client.pages
+package sharkhacks.client.components.pages
 
 import japgolly.scalajs.react.ReactComponentB
 import japgolly.scalajs.react.vdom.all._

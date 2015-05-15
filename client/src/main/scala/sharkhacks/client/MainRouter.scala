@@ -1,12 +1,12 @@
 package sharkhacks.client
 
-import sharkhacks.client.pages.{NotFoundPage, ExamplePage}
 import japgolly.scalajs.react.extra.router._
 import japgolly.scalajs.react.vdom.all._
+import sharkhacks.client.components.pages.{HomePage, NotFoundPage}
 
 object MainRouter extends RoutingRules {
   // Register the routes
-  val root = register(rootLocation(ExamplePage.component))
+  val root = register(rootLocation(HomePage.component))
   override val notFound = render(NotFoundPage.component)
 
   /**

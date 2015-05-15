@@ -3,12 +3,19 @@ package sharkhacks.client
 import japgolly.scalajs.react.React
 import japgolly.scalajs.react.extra.router.BaseUrl
 import org.scalajs.dom
-import sharkhacks.client.components.ExampleComponentStyles
+import sharkhacks.client.components.pages.PageStyles
+import sharkhacks.client.components.sky.SkyStyles
 
 import scala.scalajs.js.JSApp
 import scala.scalajs.js.annotation.JSExport
-import scalacss.Defaults._
 import scalacss.ScalaCssReact._
+import scalacss.Defaults._
+import japgolly.scalajs.react.React
+import org.scalajs.dom
+
+import scala.scalajs.js
+import scala.scalajs.js.annotation.JSExport
+
 
 @JSExport("App")
 object App extends JSApp {
@@ -19,7 +26,8 @@ object App extends JSApp {
     val router = MainRouter.router(baseUrl)
 
     // Load the css styles
-    ExampleComponentStyles.addToDocument()
+    PageStyles.addToDocument()
+//    SkyStyles.addToDocument()
 
     // tell React to render the router in the document body
     React.render(router(), dom.document.body)
