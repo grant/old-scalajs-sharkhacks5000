@@ -4,11 +4,8 @@ import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.all._
 
 import scalacss.ScalaCssReact._
-import scalacss.mutable.GlobalRegistry
 
 object Sky {
-
-//  private val Styles = GlobalRegistry[SkyStyles].get
 
   case class Props()
 
@@ -23,9 +20,7 @@ object Sky {
     .backend(new Backend(_))
     .render((props, state, backend) => {
     div(
-    "skyyy"
-//      Styles.sky, "hin"
-//    SkyStyles.sky, "hin"
+      SkyStyles.sky, "hin"
     )
   })
     .build
