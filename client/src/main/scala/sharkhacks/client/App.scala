@@ -1,12 +1,14 @@
-package main.scala.client
+package sharkhacks.client
 
 import japgolly.scalajs.react.React
 import japgolly.scalajs.react.extra.router.BaseUrl
-import main.scala.client.modules.MainRouter
 import org.scalajs.dom
+import sharkhacks.client.components.ExampleComponentStyles
 
 import scala.scalajs.js.JSApp
 import scala.scalajs.js.annotation.JSExport
+import scalacss.Defaults._
+import scalacss.ScalaCssReact._
 
 @JSExport("App")
 object App extends JSApp {
@@ -15,6 +17,9 @@ object App extends JSApp {
     // build a baseUrl, this method works for both local and server addresses (assuming you use #)
     val baseUrl = BaseUrl(dom.window.location.href.takeWhile(_ != '#'))
     val router = MainRouter.router(baseUrl)
+
+    // Load the css styles
+    ExampleComponentStyles.addToDocument()
 
     // tell React to render the router in the document body
     React.render(router(), dom.document.body)

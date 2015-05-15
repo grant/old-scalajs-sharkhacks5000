@@ -1,0 +1,35 @@
+package sharkhacks.client.components
+
+import japgolly.scalajs.react._
+import japgolly.scalajs.react.vdom.all._
+import sharkhacks5000.models.SharedUserModel
+
+import scalacss.ScalaCssReact._
+
+object ExampleComponent {
+
+  case class Props(greeting: String, user: SharedUserModel)
+
+  case class State(count: Int = 0)
+
+  class Backend(t: BackendScope[Props, State]) {
+    def plusOne() = {
+      t.modState(_ => State(count = t.state.count + 1))
+    }
+  }
+
+  val ExampleComponent = ReactComponentB[Props]("ExampleComponent")
+    .initialState(State())
+    .backend(new Backend(_))
+    .render((props, state, backend) => {
+    div(
+      h1(ExampleComponentStyles.title, props.greeting + " " + props.user.name),
+      h2(state.count + " click" + (if (state.count == 1) "" else "s")),
+      button(onClick --> backend.plusOne(), "+1")
+    )
+  })
+    .build
+
+  def apply(props: Props) = ExampleComponent(props)
+}
+
