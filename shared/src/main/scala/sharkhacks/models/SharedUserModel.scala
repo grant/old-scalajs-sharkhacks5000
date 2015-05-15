@@ -1,4 +1,4 @@
-package sharkhacks5000.models
+package sharkhacks.models
 
 class SharedUserModel(
                        val name: String,

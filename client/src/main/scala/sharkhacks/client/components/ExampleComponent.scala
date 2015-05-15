@@ -2,7 +2,7 @@ package sharkhacks.client.components
 
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.all._
-import sharkhacks5000.models.SharedUserModel
+import sharkhacks.models.SharedUserModel
 
 import scalacss.ScalaCssReact._
 

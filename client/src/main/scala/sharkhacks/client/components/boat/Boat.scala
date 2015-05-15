@@ -1,12 +1,11 @@
-package sharkhacks.client.components.ocean
+package sharkhacks.client.components.boat
 
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.all._
-import sharkhacks.client.components.boat.Boat
 
 import scalacss.ScalaCssReact._
 
-object Ocean {
+object Boat {
 
   case class Props()
 
@@ -16,16 +15,16 @@ object Ocean {
 
   }
 
-  val OceanComponent = ReactComponentB[Props]("OceanComponent")
+  val BoatComponent = ReactComponentB[Props]("BoatComponent")
     .initialState(State())
     .backend(new Backend(_))
     .render((props, state, backend) => {
-    div(OceanStyles.ocean,
-      Boat(Boat.Props())
+    div(BoatStyles.boat
+
     )
   })
     .build
 
-  def apply(props: Props) = OceanComponent(props)
+  def apply(props: Props) = BoatComponent(props)
 }
 

@@ -19,7 +19,7 @@ class IndexResource {
       |  <title>SharkHacks5000</title>
       |</head>
       |<body onload="App().main();">
-      |  Hello there!
+      |  Loading...
       |  <div id="scripts"></div>
       |  <script src="//cdnjs.cloudflare.com/ajax/libs/react/0.12.1/react-with-addons.min.js"></script>
       |  <script src="http://localhost:8000/server/src/main/resources/generated/sharkhacks5000-client-fastopt.js"></script>
