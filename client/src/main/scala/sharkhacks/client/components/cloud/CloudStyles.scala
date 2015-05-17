@@ -1,7 +1,7 @@
 package sharkhacks.client.components.cloud
 
 
-import sharkhacks.client.GlobalStyles.Colors
+import sharkhacks.client.GlobalStyles.Color
 
 import scalacss.Defaults._
 
@@ -14,6 +14,6 @@ object CloudStyles extends StyleSheet.Inline {
     width(300 px),
     height(200 px),
 //    transform := "translate(20px, 30px)",
-    backgroundColor(Colors.White)
+    backgroundColor(Color.White)
   )
 }

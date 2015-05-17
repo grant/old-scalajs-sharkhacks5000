@@ -1,5 +1,7 @@
 package sharkhacks.client.components.pages
 
+import sharkhacks.client.GlobalStyles
+
 import scalacss.Defaults._
 import scalacss._
 import Dsl.{unsafeRoot => $, _}
@@ -12,7 +14,8 @@ object PageStyles extends StyleSheet.Inline {
     ),
 
     $("html, body")(
-      height(100 %%)
+      height(100 %%),
+      fontFamily := GlobalStyles.Fonts.Title.Family
     ),
 
     $("em")(

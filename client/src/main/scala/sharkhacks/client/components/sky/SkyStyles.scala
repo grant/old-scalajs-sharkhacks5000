@@ -1,6 +1,6 @@
 package sharkhacks.client.components.sky
 
-import sharkhacks.client.GlobalStyles.Colors
+import sharkhacks.client.GlobalStyles.Color
 
 import scalacss.Defaults._
 
@@ -11,6 +11,6 @@ object SkyStyles extends StyleSheet.Inline {
   val sky = style(
     width(100 %%),
     height(600 px),
-    backgroundColor(Colors.Green.Medium)
+    backgroundColor(Color.Green.Medium)
   )
 }

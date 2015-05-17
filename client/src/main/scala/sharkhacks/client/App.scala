@@ -3,9 +3,11 @@ package sharkhacks.client
 import japgolly.scalajs.react.React
 import japgolly.scalajs.react.extra.router.BaseUrl
 import org.scalajs.dom
+import sharkhacks.client.components.bird.BirdStyles
 import sharkhacks.client.components.boat.BoatStyles
 import sharkhacks.client.components.cloud.CloudStyles
 import sharkhacks.client.components.ocean.OceanStyles
+import sharkhacks.client.components.outerspace.SunMoonStyles
 import sharkhacks.client.components.pages.PageStyles
 import sharkhacks.client.components.sky.SkyStyles
 
@@ -24,12 +26,16 @@ object App extends JSApp {
     val router = MainRouter.router(baseUrl)
 
     // Load the css styles
-    ResetStyles.addToDocument()
-    PageStyles.addToDocument()
-    SkyStyles.addToDocument()
-    OceanStyles.addToDocument()
-    BoatStyles.addToDocument()
-    CloudStyles.addToDocument()
+    Array(
+      ResetStyles,
+      PageStyles,
+      SkyStyles,
+      OceanStyles,
+      BoatStyles,
+      CloudStyles,
+      BirdStyles,
+      SunMoonStyles
+    ).foreach(_.addToDocument)
 
     // tell React to render the router in the document body
     React.render(router(), dom.document.body)
