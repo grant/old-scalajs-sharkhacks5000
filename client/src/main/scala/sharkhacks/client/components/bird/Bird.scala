@@ -19,8 +19,9 @@ object Bird {
     .initialState(State())
     .backend(new Backend(_))
     .render((props, state, backend) => {
-    div(BirdStyles.bird
-
+    div(BirdStyles.bird,
+      div(BirdStyles.wings.left),
+      div(BirdStyles.wings.right)
     )
   })
     .build

@@ -11,9 +11,11 @@ import sharkhacks.client.components.outerspace.SunMoonStyles
 import sharkhacks.client.components.pages.PageStyles
 import sharkhacks.client.components.sky.SkyStyles
 
+import scala.Array
 import scala.scalajs.js.JSApp
 import scala.scalajs.js.annotation.JSExport
 import scalacss.Defaults._
+import scalacss.ScalaCssReact
 import scalacss.ScalaCssReact._
 
 
@@ -26,15 +28,19 @@ object App extends JSApp {
     val router = MainRouter.router(baseUrl)
 
     // Load the css styles
-    Array(
-      ResetStyles,
-      PageStyles,
-      SkyStyles,
-      OceanStyles,
-      BoatStyles,
-      CloudStyles,
-      BirdStyles,
-      SunMoonStyles
+    Array.concat(
+      // Single style sheets
+      Array(
+        ResetStyles,
+        PageStyles,
+        SkyStyles,
+        OceanStyles,
+        BoatStyles,
+        CloudStyles,
+        SunMoonStyles
+      ),
+      // Multiple styles
+      BirdStyles.getStyles()
     ).foreach(_.addToDocument)
 
     // tell React to render the router in the document body
