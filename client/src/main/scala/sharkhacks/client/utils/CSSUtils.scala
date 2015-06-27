@@ -1,6 +1,6 @@
 package sharkhacks.client.utils
 
-import sharkhacks.models.Point
+import sharkhacks.client.Type._
 
 /**
  * sharkhacks.client.utils
@@ -10,5 +10,5 @@ object CSSUtils {
    * Returns the translate string.
    * @param p A point to 2D translate to.
    */
-  def translate(p: Point) = s"translate(${p.x}px, ${p.y}px)"
+  def translate(p: PointDouble) = s"translate(${p.x}px, ${p.y}px)"
 }

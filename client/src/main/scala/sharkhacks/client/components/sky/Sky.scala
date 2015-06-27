@@ -2,10 +2,10 @@ package sharkhacks.client.components.sky
 
 import sharkhacks.client.components.bird.Bird
 import sharkhacks.client.components.outerspace.SunMoon
-import sharkhacks.models.Point
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.all._
 import sharkhacks.client.components.cloud.Cloud
+import sharkhacks.models.geometry.Point
 
 import scalacss.ScalaCssReact._
 
