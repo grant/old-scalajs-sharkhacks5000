@@ -1,4 +1,4 @@
-package sharkhacks.client
+package sharkhacks
 
 import sharkhacks.models.geometry.Point
 

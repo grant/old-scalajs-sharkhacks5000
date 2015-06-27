@@ -1,7 +1,6 @@
 package sharkhacks.client
 
-import sharkhacks.client.Type._
-import sharkhacks.models.geometry.Point
+import sharkhacks.Type._
 
 /**
  * Created by timmerman on 6/27/15.

@@ -1,6 +1,7 @@
 package sharkhacks.client.utils
 
-import sharkhacks.client.Type._
+import sharkhacks.Type
+import Type._
 
 /**
  * sharkhacks.client.utils

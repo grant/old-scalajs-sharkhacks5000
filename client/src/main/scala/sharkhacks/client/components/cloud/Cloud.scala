@@ -2,7 +2,8 @@ package sharkhacks.client.components.cloud
 
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.all._
-import sharkhacks.client.Type._
+import sharkhacks.Type
+import Type._
 import sharkhacks.client.utils.CSSUtils
 import sharkhacks.models.geometry.Point
 
