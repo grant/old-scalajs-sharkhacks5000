@@ -5,7 +5,7 @@ import sharkhacks.Type._
 /**
  * Created by timmerman on 6/27/15.
  */
-object Viewport {
+class Viewport {
   // Private
   private var _width: Double = 0
   private var _height: Double = 0

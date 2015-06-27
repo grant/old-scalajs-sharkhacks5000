@@ -14,6 +14,10 @@ class Rectangle(
                  private val _center: PointDouble,
                  private val _width: Double,
                  private val _height: Double) {
+  def this(top: Double, right: Double, bottom: Double, left: Double) {
+    this(new PointDouble((left + right)/2, (top + bottom)/2), right - left, bottom - top);
+  }
+
   def center = _center
 
   def width = _width

@@ -1,11 +1,16 @@
 package sharkhacks.client.components.seabed
 
+
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.all._
+import sharkhacks.client.Region
+import sharkhacks.models.geometry.Rectangle
 
 object Seabed {
 
-  case class Props()
+  case class Props(private val _region: Rectangle) extends Region {
+    def region = _region
+  }
 
   case class State()
 
@@ -17,7 +22,10 @@ object Seabed {
     .initialState(State())
     .backend(new Backend(_))
     .render((props, state, backend) => {
-    div(className := "Seabed"
+
+    val styles: Array[TagMod] = props.getStyles ++ Array[TagMod](className := "Seabed")
+
+    div(styles
 
     )
   })

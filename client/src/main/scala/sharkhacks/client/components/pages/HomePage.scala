@@ -17,11 +17,21 @@ import scalacss.mutable.GlobalRegistry
 
 object HomePage {
 
+  private val browserViewport = new Viewport
+
   def setupGlobalEventListeners() {
+    // Window resize
     dom.window.onresize = (e: UIEvent) => {
-      Viewport.width = dom.window.innerWidth
-      Viewport.height = dom.window.innerHeight
+      browserViewport.width = dom.window.innerWidth
+      browserViewport.height = dom.window.innerHeight
     }
+
+    // RAF
+    def renderLoop(step: Double): Unit = {
+      Scene.update()
+      dom.requestAnimationFrame(renderLoop _)
+    }
+    dom.requestAnimationFrame(renderLoop _)
   }
 
   //  val Styles = GlobalRegistry[PageStyles].get
