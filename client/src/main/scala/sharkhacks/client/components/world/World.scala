@@ -20,9 +20,6 @@ object World {
   // for now. Probably want to have an absolute height
   private val SEA_FLOOR_LEVEL_Y = WORLD_HEIGHT * (9.0 / 10.0)
 
-  println(SEA_LEVEL_Y)
-  println(SEA_FLOOR_LEVEL_Y)
-
   /**
    * # World Organization
    *

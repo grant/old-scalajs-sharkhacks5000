@@ -3,8 +3,9 @@ package sharkhacks.client.components.pages
 import java.awt.geom.Point2D
 
 import japgolly.scalajs.react.vdom.all._
-import japgolly.scalajs.react.ReactComponentB
+import japgolly.scalajs.react.{TopNode, ReactComponentU, ReactComponentB}
 import org.scalajs.dom.raw.UIEvent
+import sharkhacks.client.components.scene.Scene.{Backend, State, Props}
 import sharkhacks.client.{Viewport, MainRouter}
 import sharkhacks.client.components.scene.Scene
 
@@ -19,6 +20,7 @@ object HomePage {
 
   private val browserViewport = new Viewport
 
+
   def setupGlobalEventListeners() {
     // Window resize
     dom.window.onresize = (e: UIEvent) => {
@@ -28,19 +30,22 @@ object HomePage {
 
     // RAF
     def renderLoop(step: Double): Unit = {
-      Scene.update()
+      // Update the camera position
+//      Scene.updateSceneDimensions(browserViewport.width, browserViewport.height)
+
+
+      // Re-render
       dom.requestAnimationFrame(renderLoop _)
     }
     dom.requestAnimationFrame(renderLoop _)
   }
 
-  //  val Styles = GlobalRegistry[PageStyles].get
   val component = ReactComponentB[MainRouter.Router]("ExamplePage")
     .render(router => {
     setupGlobalEventListeners()
-    //    div(Styles.page,
-    //      Scene(Scene.Props())
-    //    )
-    Scene(Scene.Props())
+
+    div(
+      Scene(Scene.Props())
+    )
   }).build
 }
