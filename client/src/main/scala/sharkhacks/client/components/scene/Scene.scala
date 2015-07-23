@@ -14,7 +14,22 @@ import scala.scalajs.js
 import scala.scalajs.js.Dynamic.{global => g}
 
 
+import sharkhacks.Type.PointDouble
+import sharkhacks.client.Camera
+import sharkhacks.client.components.world.World
+import sharkhacks.client.utils.CSSUtils
+
+/**
+ * The 2D world in which we live in. Contains the actual game elements. No UI.
+ *
+ * The way in which the world works is the following:
+ * - The scene contains a world, which is a fixed (but large) width and height.
+ * - The scene controls the camera, which manipulates the viewport of the world.
+ *
+ */
 object Scene {
+
+  var camera = new Camera
 
   case class Props()
 
@@ -37,16 +52,28 @@ object Scene {
     }
   }
 
+  def updateSceneDimensions(width: Double, height: Double) {
+    camera.width = width
+    camera.height = height
+  }
+
   val SceneComponent = ReactComponentB[Props]("SceneComponent")
     .initialStateP(props => {
       State(gameTime = new GameTime())
     })
     .backend(new Backend(_))
     .render((props, state, backend) => {
-    div(className := "Scene",
-      Sky(Sky.Props(gameTime = state.gameTime)),
-      Ocean(Ocean.Props()),
-      Seabed(Seabed.Props())
+
+    // The scene moves the world according to the position of the camera
+    val cameraTopLeft = camera.topLeft
+    val styles: Array[TagMod] = Array(
+      className := "Scene",
+      transform := CSSUtils.translate(new PointDouble(-cameraTopLeft.x, -cameraTopLeft.y)),
+      transformOrigin := "test"
+    )
+
+    div(styles,
+      World(World.Props(state.gameTime))
     )
   })
     .componentDidMount(_.backend.componentDidMount())

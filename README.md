@@ -1,6 +1,6 @@
 # SharkHacks5000
 
-The home page for SharkHacks5000
+The home page for SharkHacks5000. The most epic game ever.
 
 ## Development
 

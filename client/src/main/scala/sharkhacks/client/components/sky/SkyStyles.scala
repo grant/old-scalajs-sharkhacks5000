@@ -9,8 +9,7 @@ object SkyStyles extends StyleSheet.Inline {
   import dsl._
 
   val sky = style(
-    width(100 %%),
-    height(600 px),
+    position.absolute,
     backgroundColor(Color.Green.Medium)
   )
 }

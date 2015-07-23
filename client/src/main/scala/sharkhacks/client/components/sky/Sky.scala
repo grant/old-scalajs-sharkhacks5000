@@ -1,17 +1,18 @@
 package sharkhacks.client.components.sky
 
-import sharkhacks.client.components.bird.Bird
-import sharkhacks.client.components.outerspace.SunMoon
-import sharkhacks.models.{GameTime, Point}
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.all._
+import sharkhacks.client.Region
+import sharkhacks.client.components.bird.Bird
 import sharkhacks.client.components.cloud.Cloud
+import sharkhacks.client.components.outerspace.SunMoon
+import sharkhacks.models.GameTime
+import sharkhacks.models.geometry.{Point, Rectangle}
 
 import scalacss.ScalaCssReact._
 
 object Sky {
-
-  case class Props(var gameTime: GameTime)
+  case class Props(val region: Rectangle, var gameTime: GameTime) extends Region
 
   case class State()
 
@@ -24,9 +25,10 @@ object Sky {
     .backend(new Backend(_))
     .render((props, state, backend) => {
 
-    println(props.gameTime.time)
+    val styles: Array[TagMod] = props.getStyles ++ Array[TagMod](SkyStyles.sky)
 
-    div(SkyStyles.sky,
+    div(styles,
+      // children
       SunMoon(SunMoon.Props()),
       ul(className := "clouds"
         , Cloud(Cloud.Props(new Point(props.gameTime.time, 4)))

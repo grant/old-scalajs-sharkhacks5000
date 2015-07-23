@@ -2,14 +2,16 @@ package sharkhacks.client.components.cloud
 
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.all._
+import sharkhacks.Type
+import Type._
 import sharkhacks.client.utils.CSSUtils
-import sharkhacks.models.Point
+import sharkhacks.models.geometry.Point
 
 import scalacss.ScalaCssReact._
 
 object Cloud {
 
-  case class Props(val position: Point)
+  case class Props(val position: PointDouble)
 
   case class State()
 

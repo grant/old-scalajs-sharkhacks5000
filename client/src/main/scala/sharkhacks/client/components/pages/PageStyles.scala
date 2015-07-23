@@ -13,6 +13,10 @@ object PageStyles extends StyleSheet.Inline {
       boxSizing.borderBox
     ),
 
+    $("html")(
+      overflow.hidden
+    ),
+
     $("html, body")(
       height(100 %%),
       fontFamily := GlobalStyles.Fonts.Title.Family
