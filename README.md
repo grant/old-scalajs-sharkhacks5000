@@ -42,5 +42,3 @@ How to package (Create a fat JAR):
 make build
 make run
 ```
-
-

@@ -9,12 +9,12 @@ import scalacss.ScalaCssReact._
 import scalacss.mutable.GlobalRegistry
 
 object HomePage {
-//  val Styles = GlobalRegistry[PageStyles].get
+  //  val Styles = GlobalRegistry[PageStyles].get
   val component = ReactComponentB[MainRouter.Router]("ExamplePage")
     .render(router => {
-//    div(Styles.page,
-//      Scene(Scene.Props())
-//    )
-  Scene(Scene.Props())
+    //    div(Styles.page,
+    //      Scene(Scene.Props())
+    //    )
+    Scene(Scene.Props())
   }).build
 }

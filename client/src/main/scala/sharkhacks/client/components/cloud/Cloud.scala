@@ -9,22 +9,20 @@ import scalacss.ScalaCssReact._
 
 object Cloud {
 
-  case class Props(val start: Point)
+  case class Props(val position: Point)
 
-  case class State(position: Point)
+  case class State()
 
   class Backend(t: BackendScope[Props, State]) {
 
   }
 
   val CloudComponent = ReactComponentB[Props]("CloudComponent")
-    .initialStateP(props => {
-      State(position = props.start)
-    })
+    .initialState(State())
     .backend(new Backend(_))
     .render((props, state, backend) => {
     div(CloudStyles.cloud,
-      transform := CSSUtils.translate(state.position),
+      transform := CSSUtils.translate(props.position),
       "testing"
     )
   })

@@ -21,7 +21,7 @@ class IndexResource {
       |<body onload="App().main();">
       |  Loading...
       |  <div id="scripts"></div>
-      |  <script src="//cdnjs.cloudflare.com/ajax/libs/react/0.12.1/react-with-addons.min.js"></script>
+      |  <script src="http://localhost:8000/server/src/main/resources/assets/react-with-addons.min.js"></script>
       |  <script src="http://localhost:8000/server/src/main/resources/generated/sharkhacks5000-client-fastopt.js"></script>
       |</body>
       |</html>
