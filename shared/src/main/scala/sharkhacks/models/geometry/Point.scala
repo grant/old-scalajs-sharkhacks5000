@@ -6,4 +6,5 @@ package sharkhacks.models.geometry
 class Point[T](private val _x: T = 0, private val _y: T = 0) {
   def x: T = _x
   def y: T = _y
+  override def toString: String = x + " " + y
 }

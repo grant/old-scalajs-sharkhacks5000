@@ -5,6 +5,7 @@ import japgolly.scalajs.react.extra._
 import japgolly.scalajs.react.vdom.all._
 import org.scalajs.dom.raw.HTMLElement
 import sharkhacks.client.components.ocean.Ocean
+import sharkhacks.client.components.pages.HomePage
 import sharkhacks.client.components.seabed.Seabed
 import sharkhacks.client.components.sky.Sky
 import sharkhacks.models.GameTime
@@ -33,7 +34,7 @@ object Scene {
 
   case class Props()
 
-  case class State(val gameTime: GameTime)
+  case class State(gameTime: GameTime)
 
   class Backend(t: BackendScope[Props, State]) extends OnUnmount {
 
@@ -50,11 +51,6 @@ object Scene {
       val i = js.timers.setInterval(16.millisecond)(tick())
       onUnmount(js.timers.clearInterval(i))
     }
-  }
-
-  def updateSceneDimensions(width: Double, height: Double) {
-    camera.width = width
-    camera.height = height
   }
 
   val SceneComponent = ReactComponentB[Props]("SceneComponent")

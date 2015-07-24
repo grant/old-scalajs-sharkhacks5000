@@ -2,7 +2,9 @@ package sharkhacks.client.components.world
 
 import japgolly.scalajs.react.vdom.all._
 import japgolly.scalajs.react.{BackendScope, ReactComponentB}
+import sharkhacks.Type.PointDouble
 import sharkhacks.client.components.ocean.Ocean
+import sharkhacks.client.components.scene.Scene
 import sharkhacks.client.components.seabed.Seabed
 import sharkhacks.client.components.sky.Sky
 import sharkhacks.models.GameTime
@@ -20,6 +22,12 @@ object World {
   private val SEA_LEVEL_Y = WORLD_HEIGHT / 100
   // for now. Probably want to have an absolute height
   private val SEA_FLOOR_LEVEL_Y = WORLD_HEIGHT * (9.0 / 10.0)
+
+  // Regions
+  lazy final val SKY_REGION = new Rectangle(top = 0, bottom = SEA_LEVEL_Y, left = 0, right = WORLD_WIDTH)
+  lazy final val OCEAN_REGION = new Rectangle(top = SEA_LEVEL_Y, bottom = SEA_FLOOR_LEVEL_Y, left = 0, right = WORLD_WIDTH)
+  lazy final val SEABED_REGION = new Rectangle(top = SEA_FLOOR_LEVEL_Y, bottom = WORLD_HEIGHT, left = 0, right = WORLD_WIDTH)
+
 
   /**
    * # World Organization
@@ -65,7 +73,10 @@ object World {
   case class State()
 
   class Backend(t: BackendScope[Props, State]) {
-
+    def componentDidMount(): Unit = {
+      // Set initial camera center
+      Scene.camera.center = new PointDouble(SKY_REGION.center.x, SKY_REGION.bottom)
+    }
   }
 
   val WorldComponent = ReactComponentB[Props]("WorldComponent")
@@ -74,9 +85,6 @@ object World {
     .render((props, state, backend) => {
     // TODO only render the parts of the world that are visible. Maybe tile the whole world?
     // (To determine which objects are in the viewport.)
-    val skyRegion = new Rectangle(top = 0, bottom = SEA_LEVEL_Y, left = 0, right = WORLD_WIDTH)
-    val oceanRegion = new Rectangle(top = SEA_LEVEL_Y, bottom = SEA_FLOOR_LEVEL_Y, left = 0, right = WORLD_WIDTH)
-    val seabedRegion = new Rectangle(top = SEA_FLOOR_LEVEL_Y, bottom = WORLD_HEIGHT, left = 0, right = WORLD_WIDTH)
 
     val styles: Array[TagMod] = Array(
       className := "World",
@@ -86,11 +94,12 @@ object World {
 
     // jsx
     div(styles,
-      Sky(Sky.Props(region = skyRegion, gameTime = props.gameTime)),
-      Ocean(Ocean.Props(region = oceanRegion)),
-      Seabed(Seabed.Props(region = seabedRegion))
+      Sky(Sky.Props(region = SKY_REGION, gameTime = props.gameTime)),
+      Ocean(Ocean.Props(region = OCEAN_REGION)),
+      Seabed(Seabed.Props(region = SEABED_REGION))
     )
   })
+    .componentDidMount(_.backend.componentDidMount())
     .build
 
   def apply(props: Props) = WorldComponent(props)
