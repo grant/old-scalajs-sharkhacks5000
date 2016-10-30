@@ -1,6 +1,10 @@
 # SharkHacks5000
 
 The home page for SharkHacks5000. The most epic game ever.
+sdf
+## Story
+
+I am the cofounder of [DubHacks](dubhacks.co), the University of Washington collegiate hackathon. I attended Hackconsdf
 
 ## Development
 
