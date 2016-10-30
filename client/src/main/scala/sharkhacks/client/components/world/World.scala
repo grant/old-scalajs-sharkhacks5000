@@ -94,6 +94,7 @@ object World {
 
     // jsx
     div(styles,
+
       Sky(Sky.Props(region = SKY_REGION, gameTime = props.gameTime)),
       Ocean(Ocean.Props(region = OCEAN_REGION)),
       Seabed(Seabed.Props(region = SEABED_REGION))

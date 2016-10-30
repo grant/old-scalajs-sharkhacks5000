@@ -86,9 +86,7 @@ object HomePage {
     setupGlobalEventListeners()
     Scene.camera.center = new PointDouble(0, 0)
 
-    div(
-      Scene(Scene.Props())
-    )
+    Scene(Scene.Props())
   })
     .build
 }

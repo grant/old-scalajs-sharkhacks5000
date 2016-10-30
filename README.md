@@ -16,6 +16,7 @@ project client
 make local
 ```
 
+Serve the javascript:
 ```sh
 make js
 ```

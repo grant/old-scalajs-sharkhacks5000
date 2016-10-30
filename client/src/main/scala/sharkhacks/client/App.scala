@@ -3,6 +3,7 @@ package sharkhacks.client
 import japgolly.scalajs.react.React
 import japgolly.scalajs.react.extra.router.BaseUrl
 import org.scalajs.dom
+import sharkhacks.client.components.OverlayStyles
 import sharkhacks.client.components.bird.BirdStyles
 import sharkhacks.client.components.boat.BoatStyles
 import sharkhacks.client.components.cloud.CloudStyles
@@ -37,7 +38,8 @@ object App extends JSApp {
         OceanStyles,
         BoatStyles,
         CloudStyles,
-        SunMoonStyles
+        SunMoonStyles,
+        OverlayStyles
       ),
       // Multiple styles
       BirdStyles.getStyles()
