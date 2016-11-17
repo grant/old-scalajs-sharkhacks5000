@@ -1,5 +1,7 @@
 # SharkHacks5000
 
+MOVED TO https://github.com/grant/sharkhacks5000
+
 The home page for SharkHacks5000.
 | "The most epically incredible super-premier really really big hackathon that has ever happened or will ever happen in the history of the entire known universe epecially on a boat."
 
@@ -59,3 +61,7 @@ How to package (Create a fat JAR):
 make build
 make run
 ```
+
+## Progress
+
+<img width="1432" alt="screen shot 2016-11-16 at 8 48 17 pm" src="https://cloud.githubusercontent.com/assets/744973/20376726/1c06bece-ac3e-11e6-933f-39ef39aa2be6.png">
