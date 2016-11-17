@@ -34,6 +34,9 @@ Serve the javascript:
 make js
 ```
 
+Open the site:
+`open http://localhost:8080/`
+
 ## Building / Deploying
 
 How to start:
